@@ -15,6 +15,18 @@ docker compose run --rm rag-api python ingest.py --source_dir data/knowledge
 curl -X POST http://localhost:8000/v1/chat/completions              -H "Content-Type: application/json"              -d '{"question":"Як вирощувати горох гідропонно?"}'
 ```
 
+### Робота без доступу до інтернету
+
+1. Завантажте модель Qwen заздалегідь і розпакуйте її в директорію, наприклад, `models/qwen`.
+2. Перед запуском сервісу встановіть змінні оточення:
+
+```bash
+export MODEL_LOCAL_PATH=models/qwen
+export HF_LOCAL_FILES_ONLY=1
+```
+
+Тепер `rag-api` використовуватиме локальні файли моделі й не намагатиметься звертатися до мережі.
+
 ## Структура
 
 - `data/knowledge` — сюди кладемо `.md` / `.txt` файли з контентом.
