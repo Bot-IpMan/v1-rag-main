@@ -1,0 +1,19 @@
+[project]
+name = "v1-rag-main"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.uv]
+# Allow installation on Python 3.13 even if some dependencies
+# haven't yet declared support. These overrides can be removed once
+# upstream packages publish wheels for Python 3.13.
+[tool.uv.overrides]
+# qdrant-client depends on grpcio which currently lacks official
+# Python 3.13 wheels.
+"grpcio" = { version = "1.62.1" }
+# FastAPI pulls in pydantic-core which is still catching up with
+# Python 3.13 releases.
+"pydantic-core" = { version = "2.18.0" }
+# uvicorn's optional uvloop backend has not declared Python 3.13
+# compatibility yet.
+"uvloop" = { version = "0.19.0" }
