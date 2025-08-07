@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForCausalLM, TextStreamer
-from retriever import fetch_relevant
+from server.retriever import fetch_relevant
 
 MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-7B-Instruct")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, device_map="auto")
